@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">apollo</string>
+    <string name="pass_hint">Password</string>
+    <string name="user_hint">Username</string>
+    <string name="login_btn">Login</string>
+    <string name="signup">SIGNUP</string>
+    <string name="confirm_password">Confirm Password</string>
+</resources>
