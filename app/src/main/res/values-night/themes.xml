@@ -3,11 +3,11 @@
     <style name="Theme.Apollo" parent="Theme.MaterialComponents.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/bluish_green</item>
-        <item name="colorPrimaryVariant">@color/bluish_green_dark</item>
+        <item name="colorPrimaryVariant">@color/navyBlue</item>
         <item name="colorOnPrimary">@color/navyBlue</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/navyBlue</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>

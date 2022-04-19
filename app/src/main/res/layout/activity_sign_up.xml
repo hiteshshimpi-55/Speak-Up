@@ -4,26 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_stars"
+    android:background="@color/navyBlue"
     app:circularflow_radiusInDP="12dp"
+    android:padding="20dp"
     tools:context=".Login_Activity">
-
-    <ImageView
-        android:id="@+id/LoginPage_Logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="104dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
 
     <EditText
         android:id="@+id/username_signup"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="88dp"
         android:layout_marginEnd="16dp"
         android:backgroundTint="@color/bluish_green"
         android:ems="10"
@@ -33,7 +24,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LoginPage_Logo" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
         android:id="@+id/password_signup"
@@ -110,5 +101,15 @@
         app:layout_constraintTop_toBottomOf="@+id/signup_btn"
         app:layout_constraintVertical_bias="0.806"
         app:srcCompat="@drawable/btn_2" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar_signup"
+        app:srcCompat="@drawable/apollo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

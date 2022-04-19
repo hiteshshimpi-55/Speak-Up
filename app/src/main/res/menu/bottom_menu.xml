@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bottom_home"
+        android:icon="@drawable/home_button"
+        android:title="Home" />
+    <item
+        android:id="@+id/bottom_post"
+        android:icon="@drawable/ic_baseline_notifications_24"
+        android:title="Notification" />
+    <item
+        android:id="@+id/bottom_acc"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="Account" />
+</menu>

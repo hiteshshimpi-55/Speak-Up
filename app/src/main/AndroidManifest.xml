@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Apollo">
         <activity
+            android:name=".NewPostActivity"
+            android:exported="false" />
+        <activity
             android:name=".SignUpActivity"
             android:exported="false" />
         <activity

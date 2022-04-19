@@ -23,7 +23,7 @@ public class Login_Activity extends AppCompatActivity {
 
     private EditText loginEmailText;
     private EditText loginPassText;
-    private Button loginButton;
+    private ImageView loginButton;
     private ImageView signUp;
 
     private ProgressBar progressBar;
@@ -36,7 +36,7 @@ public class Login_Activity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         loginEmailText = (EditText) findViewById(R.id.username_signup);
         loginPassText = (EditText) findViewById(R.id.password_signup);
-        loginButton = (Button) findViewById(R.id.signup_btn);
+        loginButton = (ImageView) findViewById(R.id.login_btn);
         signUp = (ImageView) findViewById(R.id.SignUp_btn);
         progressBar = (ProgressBar) findViewById(R.id.progressBar_signup);
 
