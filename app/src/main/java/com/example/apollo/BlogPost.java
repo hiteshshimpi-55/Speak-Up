@@ -7,9 +7,9 @@ public class BlogPost {
     public String user_id,post_txt;
     public Timestamp timestamp;
 
-    public BlogPost()
+    public BlogPost(String post_txt)
     {
-
+        this.post_txt = post_txt;
     }
     public BlogPost(String user_id, String post_txt, Timestamp timestamp) {
         this.user_id = user_id;

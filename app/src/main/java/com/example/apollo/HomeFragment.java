@@ -108,9 +108,9 @@ public class HomeFragment extends Fragment {
                         QueryDocumentSnapshot post = doc.getDocument();
                         Map<String, Object> s = post.getData();
                         String content = (String) s.get("Post_Content");
-                        Timestamp timeStamp = (Timestamp) s.get("TimeStamp");
+//                        Timestamp timeStamp = (Timestamp) s.get("TimeStamp");
                         String userid = (String) s.get("User");
-                        blogList.add(new BlogPost(userid,content,timeStamp));
+                        blogList.add(new BlogPost(content));
                     }
                 }
                 adapter.notifyDataSetChanged();
