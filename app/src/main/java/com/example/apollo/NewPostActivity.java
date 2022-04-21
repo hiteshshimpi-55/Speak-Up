@@ -72,7 +72,7 @@ public class NewPostActivity extends AppCompatActivity {
                             Map<String,Object> postMap = new HashMap<>();
                             postMap.put("Post_Content",text);
                             postMap.put("User",currUser);
-                            postMap.put("TimeStamp",FieldValue.serverTimestamp());
+                            postMap.put("TimeStamp",FieldValue.serverTimestamp().toString());
 
                             firestore.collection("Posts").add(postMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
 

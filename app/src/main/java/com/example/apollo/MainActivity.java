@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         mAuth = FirebaseAuth.getInstance();
         //Bottom navigation bar
         main_bottom_nav_view = findViewById(R.id.mainBottomNav);
@@ -40,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         accountFragment = new AccountFragment();
         //Post Button
         addPost_btn = (ImageView) findViewById(R.id.addPostBtn);
-
+        replaceFragment(homeFragment);
         addPost_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

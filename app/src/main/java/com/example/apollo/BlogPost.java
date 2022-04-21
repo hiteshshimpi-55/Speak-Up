@@ -1,10 +1,11 @@
 package com.example.apollo;
 
-import java.sql.Timestamp;
+import com.google.firebase.Timestamp;
 
 public class BlogPost {
 
     public String user_id,post_txt;
+    public Timestamp timestamp;
 
     public BlogPost()
     {
@@ -16,16 +17,19 @@ public class BlogPost {
         this.timestamp = timestamp;
     }
 
-    public Timestamp timestamp;
+
     public String getUser_id() {
+
         return user_id;
     }
 
-    public void setUser_id(String user_id) {
+    public void setUser_id(String user_id)
+    {
         this.user_id = user_id;
     }
 
     public String getPost_txt() {
+
         return post_txt;
     }
 
