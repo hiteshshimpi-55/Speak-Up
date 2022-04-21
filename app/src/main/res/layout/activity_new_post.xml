@@ -34,6 +34,7 @@
         android:inputType="textMultiLine"
         android:padding="10dp"
         android:textColorHint="#AD64FFDA"
+        android:textColor="@color/bluish_green"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toStartOf="parent"

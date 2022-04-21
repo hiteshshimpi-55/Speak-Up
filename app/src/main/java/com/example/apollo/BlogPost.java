@@ -2,19 +2,21 @@ package com.example.apollo;
 
 import com.google.firebase.Timestamp;
 
+import java.util.Date;
+
 public class BlogPost {
 
     public String user_id,post_txt;
-    public Timestamp timestamp;
+    public Date TimeStamp;
 
     public BlogPost(String post_txt)
     {
         this.post_txt = post_txt;
     }
-    public BlogPost(String user_id, String post_txt, Timestamp timestamp) {
+    public BlogPost(String user_id, String post_txt,Date timestamp) {
         this.user_id = user_id;
         this.post_txt = post_txt;
-        this.timestamp = timestamp;
+        this.TimeStamp = timestamp;
     }
 
 
@@ -37,11 +39,11 @@ public class BlogPost {
         this.post_txt = post_txt;
     }
 
-    public Timestamp getTimestamp() {
-        return timestamp;
+    public Date getTimestamp() {
+        return TimeStamp;
     }
 
-    public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
+    public void setTimestamp(Date timestamp) {
+        this.TimeStamp = timestamp;
     }
 }

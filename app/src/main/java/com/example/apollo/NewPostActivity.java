@@ -72,7 +72,7 @@ public class NewPostActivity extends AppCompatActivity {
                             Map<String,Object> postMap = new HashMap<>();
                             postMap.put("Post_Content",text);
                             postMap.put("User",currUser);
-                            postMap.put("TimeStamp",FieldValue.serverTimestamp().toString());
+                            postMap.put("TimeStamp",FieldValue.serverTimestamp());
 
                             firestore.collection("Posts").add(postMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
 
@@ -98,6 +98,7 @@ public class NewPostActivity extends AppCompatActivity {
                 {
                       Toast.makeText(NewPostActivity.this,"Error in posting",Toast.LENGTH_SHORT).show();
                 }
+                firestore.collection("Posts").document().update("TimeStamp",FieldValue.serverTimestamp());
             }
         });
     }

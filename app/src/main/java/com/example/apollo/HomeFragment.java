@@ -1,5 +1,7 @@
 package com.example.apollo;
 
+import static com.google.firebase.firestore.DocumentSnapshot.ServerTimestampBehavior.ESTIMATE;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -22,15 +24,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -92,7 +97,9 @@ public class HomeFragment extends Fragment {
     }
 
     public void EventChangeListener() {
-        firestore.collection("Posts").addSnapshotListener(new EventListener<QuerySnapshot>() {
+
+        Query firstQuery = firestore.collection("Posts").orderBy("TimeStamp",Query.Direction.DESCENDING);
+        firstQuery.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                 if(error!=null)
@@ -108,9 +115,12 @@ public class HomeFragment extends Fragment {
                         QueryDocumentSnapshot post = doc.getDocument();
                         Map<String, Object> s = post.getData();
                         String content = (String) s.get("Post_Content");
-//                        Timestamp timeStamp = (Timestamp) s.get("TimeStamp");
+//                        Timestamp TimeStamp = (Timestamp) s.get("TimeStamp");
+//                        Date date = TimeStamp.toDate();
+                        DocumentSnapshot.ServerTimestampBehavior behavior = ESTIMATE;
+                        Date date = post.getDate("TimeStamp", behavior);
                         String userid = (String) s.get("User");
-                        blogList.add(new BlogPost(content));
+                        blogList.add(new BlogPost(userid,content,date));
                     }
                 }
                 adapter.notifyDataSetChanged();
