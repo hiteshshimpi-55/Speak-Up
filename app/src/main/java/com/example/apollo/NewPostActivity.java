@@ -98,7 +98,7 @@ public class NewPostActivity extends AppCompatActivity {
                 {
                       Toast.makeText(NewPostActivity.this,"Error in posting",Toast.LENGTH_SHORT).show();
                 }
-                firestore.collection("Posts").document().update("TimeStamp",FieldValue.serverTimestamp());
+//                firestore.collection("Posts").document().update("TimeStamp",FieldValue.serverTimestamp());
             }
         });
     }

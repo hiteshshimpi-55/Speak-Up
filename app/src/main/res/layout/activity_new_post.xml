@@ -26,7 +26,7 @@
         android:layout_height="311dp"
         android:layout_marginTop="128dp"
         android:autofillHints="Post without being JUDGE...."
-        android:background="@drawable/border_postpage"
+        android:background="@drawable/shape_rectangle"
         android:ems="10"
         android:fontFamily="serif-monospace"
         android:gravity="start|top"

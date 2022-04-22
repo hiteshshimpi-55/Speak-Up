@@ -2,6 +2,7 @@ package com.example.apollo;
 
 import static com.google.firebase.firestore.DocumentSnapshot.ServerTimestampBehavior.ESTIMATE;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -56,6 +57,7 @@ public class HomeFragment extends Fragment {
 
 
 
+//    @SuppressLint("NotifyDataSetChanged")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -75,21 +77,6 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
 
-//        reference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//
-//                BlogPost post = snapshot.getValue(BlogPost.class);
-////                assert post != null;
-//                Toast.makeText(getActivity(),"Text: "+post.post_txt,Toast.LENGTH_SHORT).show();
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
         EventChangeListener();
         adapter   = new BlogPostAdapter(blogList);
         recyclerView.setAdapter(adapter);
@@ -115,8 +102,6 @@ public class HomeFragment extends Fragment {
                         QueryDocumentSnapshot post = doc.getDocument();
                         Map<String, Object> s = post.getData();
                         String content = (String) s.get("Post_Content");
-//                        Timestamp TimeStamp = (Timestamp) s.get("TimeStamp");
-//                        Date date = TimeStamp.toDate();
                         DocumentSnapshot.ServerTimestampBehavior behavior = ESTIMATE;
                         Date date = post.getDate("TimeStamp", behavior);
                         String userid = (String) s.get("User");
@@ -128,15 +113,4 @@ public class HomeFragment extends Fragment {
         });
     }
 
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        adapter.startListening();
-//    }
-//
-//    @Override
-//    public void onStop() {
-//        super.onStop();
-//        adapter.stopListening();
-//    }
 }

@@ -9,8 +9,9 @@
         <entry key="..\:/AndroidStudioProjects/apollo/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.253" />
         <entry key="..\:/AndroidStudioProjects/apollo/app/src/main/res/drawable/ic_launcher_background.xml" value="0.22592592592592592" />
         <entry key="..\:/AndroidStudioProjects/apollo/app/src/main/res/drawable/shadow.xml" value="0.253" />
+        <entry key="..\:/AndroidStudioProjects/apollo/app/src/main/res/drawable/shape_rectangle.xml" value="0.2315" />
         <entry key="..\:/AndroidStudioProjects/apollo/app/src/main/res/layout/activity_login.xml" value="0.264" />
-        <entry key="..\:/AndroidStudioProjects/apollo/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/AndroidStudioProjects/apollo/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/AndroidStudioProjects/apollo/app/src/main/res/layout/activity_new_post.xml" value="0.2359375" />
         <entry key="..\:/AndroidStudioProjects/apollo/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/apollo/app/src/main/res/layout/fragment_account.xml" value="0.25" />
