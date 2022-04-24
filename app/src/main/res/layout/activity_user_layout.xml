@@ -8,7 +8,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:cardUseCompatPadding="false"
         app:cardCornerRadius="5dp"
         app:cardBackgroundColor="@color/navyBlue"
@@ -22,27 +22,50 @@
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_height="match_parent"
                 android:background="@color/navyBlue"
                 android:orientation="vertical"
+                android:layout_margin="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/textView5"
+
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/courier_prime"
-                    android:padding="5dp"
-                    android:text="@string/user"
-                    android:textColor="@color/bluish_green"
-                    android:textSize="18sp" />
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/courier_prime"
+                        android:padding="5dp"
+                        android:text="@string/user"
+                        android:textColor="@color/bluish_green"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/button_options"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.979"
+                        app:layout_constraintStart_toEndOf="@+id/textView5"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.461"
+                        app:srcCompat="@drawable/delete" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -80,57 +103,33 @@
                                     app:layout_constraintTop_toTopOf="parent">
 
                                     <TextView
-                                        android:id="@+id/post_content"
+                                        android:id="@+id/posts_user"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:fontFamily="@font/courier_prime"
-                                        android:padding="10dp"
                                         android:text="HELLO THIS IS POST TEXT"
+                                        android:padding="10dp"
+                                        android:fontFamily="@font/courier_prime"
                                         android:textColor="@color/bluish_green"
-                                        android:textSize="18sp" />
+                                        android:textSize="18sp"
+                                        />
 
                                     <androidx.constraintlayout.widget.ConstraintLayout
                                         android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:padding="5dp">
-
-                                        <ImageView
-                                            android:id="@+id/like_btn"
-                                            android:layout_width="24dp"
-                                            android:layout_height="24dp"
-                                            android:layout_marginStart="8dp"
-                                            app:layout_constraintBottom_toBottomOf="parent"
-                                            app:layout_constraintStart_toStartOf="parent"
-                                            app:layout_constraintTop_toTopOf="parent"
-                                            app:layout_constraintVertical_bias="0.0"
-                                            app:srcCompat="@drawable/action_likebutton" />
+                                        android:layout_height="match_parent">
 
                                         <TextView
-                                            android:id="@+id/likes_cnt"
+                                            android:id="@+id/date_user"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:layout_marginStart="9dp"
-                                            android:text="0 Likes"
-                                            android:textColor="@color/bluish_green"
-                                            app:layout_constraintBottom_toBottomOf="parent"
-                                            app:layout_constraintStart_toEndOf="@+id/like_btn"
-                                            app:layout_constraintTop_toTopOf="parent"
-                                            app:layout_constraintVertical_bias="0.521" />
-
-                                        <TextView
-                                            android:id="@+id/date"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:fontFamily="@font/courier_prime"
                                             android:text="MMM DD,YYYY"
                                             android:textColor="@color/bluish_green"
+                                            android:fontFamily="@font/courier_prime"
                                             android:textSize="15sp"
                                             app:layout_constraintBottom_toBottomOf="parent"
                                             app:layout_constraintEnd_toEndOf="parent"
-                                            app:layout_constraintHorizontal_bias="1.0"
-                                            app:layout_constraintStart_toEndOf="@+id/likes_cnt"
-                                            app:layout_constraintTop_toTopOf="parent"
-                                            app:layout_constraintVertical_bias="0.666" />
+                                            app:layout_constraintHorizontal_bias="0.952"
+                                            app:layout_constraintStart_toStartOf="parent"
+                                            app:layout_constraintTop_toTopOf="parent" />
                                     </androidx.constraintlayout.widget.ConstraintLayout>
                                 </LinearLayout>
                             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -142,10 +141,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="15dp"
-                    android:src="@drawable/post_line" />
-
+                    android:src="@drawable/post_line"/>
             </LinearLayout>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>

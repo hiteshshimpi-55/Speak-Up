@@ -20,25 +20,38 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="64dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.071"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/new_post_progress"
+        app:srcCompat="@drawable/speak_up" />
+
     <EditText
         android:id="@+id/post_txt"
         android:layout_width="377dp"
         android:layout_height="311dp"
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="32dp"
         android:autofillHints="Post without being JUDGE...."
         android:background="@drawable/shape_rectangle"
         android:ems="10"
-        android:fontFamily="serif-monospace"
+        android:fontFamily="@font/courier_prime"
         android:gravity="start|top"
         android:hint="Post without being JUDGE...."
         android:inputType="textMultiLine"
         android:padding="10dp"
-        android:textColorHint="#AD64FFDA"
         android:textColor="@color/bluish_green"
+        android:textColorHint="#AD64FFDA"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageView

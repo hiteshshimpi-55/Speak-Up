@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/navyBlue"
-    android:padding="20dp"
+    android:padding="10dp"
     app:circularflow_radiusInDP="12dp"
     tools:context=".Login_Activity">
 
@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/apollo" />
+        app:srcCompat="@drawable/speak_up" />
 
     <EditText
         android:id="@+id/username_signup"
@@ -31,6 +31,7 @@
         android:hint="@string/user_hint"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
+        android:fontFamily="@font/courier_prime"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,6 +44,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="16dp"
+        android:fontFamily="@font/courier_prime"
         android:backgroundTint="@color/bluish_green"
         android:backgroundTintMode="src_in"
         android:ems="10"
@@ -64,12 +66,16 @@
         app:layout_constraintTop_toBottomOf="@+id/password_signup"
         app:srcCompat="@drawable/login_btn"
         android:layout_height="45dp"/>
-    <ImageView
+    <TextView
         android:id="@+id/SignUp_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="16sp"
+        android:text="DON'T HAVE A ACCOUNT ? SIGNUP HERE"
+        android:fontFamily="@font/courier_prime"
+        android:textColor="@color/bluish_green"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_btn"

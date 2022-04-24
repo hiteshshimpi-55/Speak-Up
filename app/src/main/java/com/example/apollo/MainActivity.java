@@ -5,12 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -32,7 +36,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if(isNetworkAvailable())
+        {
+            Toast.makeText(this, "Connected", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(this, "Connection Unavailable", Toast.LENGTH_SHORT).show();
 
+        }
         mAuth = FirebaseAuth.getInstance();
         //Bottom navigation bar
         main_bottom_nav_view = findViewById(R.id.mainBottomNav);
@@ -76,9 +87,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
         FirebaseUser currUser = FirebaseAuth.getInstance().getCurrentUser();
-
         if(currUser==null)
         {
             sendToLogin();
@@ -91,12 +100,6 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.main_menu,menu);
         return true;
     }
-
-    private void logout() {
-        mAuth.signOut();
-        sendToLogin();
-    }
-
     private void sendToLogin() {
 
         Intent login_Intent = new Intent(MainActivity.this,Login_Activity.class);
@@ -109,5 +112,21 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_container,newFragment);
         fragmentTransaction.commit();
+    }
+    private boolean isNetworkAvailable() {
+        try{
+            ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo networkInfo = null;
+
+            if(manager!=null)
+            {
+                networkInfo = manager.getActiveNetworkInfo();
+            }
+            return networkInfo!=null && networkInfo.isConnected();
+        }
+        catch (NullPointerException e)
+        {
+            return false;
+        }
     }
 }

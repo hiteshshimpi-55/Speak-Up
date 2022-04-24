@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,7 +25,7 @@ public class Login_Activity extends AppCompatActivity {
     private EditText loginEmailText;
     private EditText loginPassText;
     private ImageView loginButton;
-    private ImageView signUp;
+    private TextView signUp;
 
     private ProgressBar progressBar;
     private FirebaseAuth mAuth;
@@ -37,7 +38,7 @@ public class Login_Activity extends AppCompatActivity {
         loginEmailText = (EditText) findViewById(R.id.username_signup);
         loginPassText = (EditText) findViewById(R.id.password_signup);
         loginButton = (ImageView) findViewById(R.id.login_btn);
-        signUp = (ImageView) findViewById(R.id.SignUp_btn);
+        signUp = (TextView) findViewById(R.id.SignUp_btn);
         progressBar = (ProgressBar) findViewById(R.id.progressBar_signup);
 
         signUp.setOnClickListener(new View.OnClickListener() {
@@ -45,6 +46,7 @@ public class Login_Activity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent signup_intent =  new Intent(Login_Activity.this,SignUpActivity.class);
                 startActivity(signup_intent);
+                finish();
             }
         });
 

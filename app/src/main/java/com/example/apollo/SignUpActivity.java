@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,7 +26,7 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText signup_password;
     private EditText signup_confirm_pass;
     private Button signupBtn;
-    private ImageView goToLogin;
+    private TextView goToLogin;
     private ProgressBar progressBar;
 
     private FirebaseAuth mAuth;
@@ -41,13 +42,14 @@ public class SignUpActivity extends AppCompatActivity {
         signup_confirm_pass = (EditText) findViewById(R.id.confirm_pass_signup);
         signupBtn       = (Button) findViewById(R.id.signup_btn);
         progressBar     = (ProgressBar) findViewById(R.id.progressBar_signup);
-        goToLogin       = (ImageView) findViewById(R.id.Login_btn);
+        goToLogin       = (TextView) findViewById(R.id.Login_btn);
 
         goToLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent login_intent =  new Intent(SignUpActivity.this,Login_Activity.class);
                 startActivity(login_intent);
+                finish();
             }
         });
         signupBtn.setOnClickListener(new View.OnClickListener() {

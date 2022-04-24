@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">apollo</string>
     <string name="pass_hint">Password</string>
-    <string name="user_hint">Username</string>
+    <string name="user_hint">Email Address</string>
     <string name="login_btn">Login</string>
     <string name="signup">SIGNUP</string>
     <string name="user">/@nonymus</string>

@@ -4,10 +4,11 @@ import com.google.firebase.Timestamp;
 
 import java.util.Date;
 
-public class BlogPost {
+public class BlogPost extends BlogPostId {
 
     public String user_id,post_txt;
     public Date TimeStamp;
+    int like_count;
 
     public BlogPost(String post_txt)
     {
@@ -45,5 +46,9 @@ public class BlogPost {
 
     public void setTimestamp(Date timestamp) {
         this.TimeStamp = timestamp;
+    }
+
+    public int getLike_count() {
+        return like_count;
     }
 }

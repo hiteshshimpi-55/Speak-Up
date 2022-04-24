@@ -1,8 +1,12 @@
 package com.example.apollo;
 
+import static androidx.core.content.ContextCompat.getSystemService;
 import static com.google.firebase.firestore.DocumentSnapshot.ServerTimestampBehavior.ESTIMATE;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -55,8 +59,6 @@ public class HomeFragment extends Fragment {
 
     }
 
-
-
 //    @SuppressLint("NotifyDataSetChanged")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -72,13 +74,11 @@ public class HomeFragment extends Fragment {
         database  = FirebaseDatabase.getInstance();
 
         reference = database.getReference("Posts");
-
+//        blogList.clear();
         recyclerView = (RecyclerView)view.findViewById(R.id.post_list_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setHasFixedSize(true);
-
-        EventChangeListener();
         adapter   = new BlogPostAdapter(blogList);
+        EventChangeListener();
         recyclerView.setAdapter(adapter);
         return view;
     }
@@ -99,18 +99,28 @@ public class HomeFragment extends Fragment {
                 {
                     if(doc.getType()== DocumentChange.Type.ADDED)
                     {
+                        String blogPostId = doc.getDocument().getId();
+//                        BlogPost blogPost = doc.getDocument().toObject(BlogPost.class);
                         QueryDocumentSnapshot post = doc.getDocument();
                         Map<String, Object> s = post.getData();
                         String content = (String) s.get("Post_Content");
                         DocumentSnapshot.ServerTimestampBehavior behavior = ESTIMATE;
                         Date date = post.getDate("TimeStamp", behavior);
                         String userid = (String) s.get("User");
-                        blogList.add(new BlogPost(userid,content,date));
+                        blogList.add(new BlogPost(userid,content,date).withId(blogPostId));
                     }
+
                 }
+
                 adapter.notifyDataSetChanged();
             }
+
         });
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+
+    }
 }

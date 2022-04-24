@@ -14,15 +14,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="84dp"
         android:layout_marginEnd="16dp"
+        android:fontFamily="@font/courier_prime"
         android:backgroundTint="@color/bluish_green"
         android:ems="10"
         android:hint="@string/user_hint"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
@@ -33,6 +33,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="16dp"
+        android:fontFamily="@font/courier_prime"
         android:backgroundTint="@color/bluish_green"
         android:backgroundTintMode="src_in"
         android:ems="10"
@@ -46,13 +47,13 @@
 
     <Button
         android:id="@+id/signup_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="114dp"
+        android:layout_height="50dp"
         android:layout_marginTop="64dp"
         android:background="@drawable/button"
-        android:fontFamily="serif-monospace"
+        android:fontFamily="@font/courier_prime"
         android:text="@string/signup"
-
+        android:textStyle="bold"
         android:textAllCaps="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -70,6 +71,7 @@
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -84,32 +86,35 @@
         android:hint="@string/confirm_password"
         android:inputType="textPassword"
         android:minHeight="48dp"
+        android:fontFamily="@font/courier_prime"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password_signup" />
 
 
-    <ImageView
+    <TextView
         android:id="@+id/Login_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/courier_prime"
+        android:text="HAVE A ACCOUNT ? LOGIN HERE"
+        android:textColor="@color/bluish_green"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup_btn"
-        app:layout_constraintVertical_bias="0.806"
-        app:srcCompat="@drawable/btn_2" />
+        app:layout_constraintVertical_bias="0.849" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="160dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progressBar_signup"
-        app:srcCompat="@drawable/apollo" />
+        app:srcCompat="@drawable/speak_up" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
