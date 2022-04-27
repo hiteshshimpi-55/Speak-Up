@@ -1,13 +1,7 @@
 package com.example.apollo;
 
-import static androidx.core.content.ContextCompat.getSystemService;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.text.TextUtils;
-import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,22 +12,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.gms.common.SupportErrorDialogFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,7 +51,7 @@ public class BlogPostAdapter extends RecyclerView.Adapter<BlogPostAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
 //        holder.setIsRecyclable(false);
         String blogPostId = blog_lists.get(position).blogPostId;
@@ -71,17 +62,17 @@ public class BlogPostAdapter extends RecyclerView.Adapter<BlogPostAdapter.ViewHo
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMM d,yyyy");
         String dateString = simpleDateFormat.format(millisecond);
         holder.date.setText(dateString);
-
 //        holder.date.setRotation(90);
 
         //Like Count
-        firestore.collection("Posts/"+blogPostId+"/Likes").addSnapshotListener(new EventListener<QuerySnapshot>() {
+        firestore.collection("Posts").document(blogPostId).addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
-            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                if(!value.isEmpty())
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                Map<String,Object> mp = value.getData();
+                ArrayList<String> ar = (ArrayList<String>) mp.get("Likes");
+                if(!ar.isEmpty())
                 {
-                    int count = value.size();
-
+                    int count = ar.size();
                     holder.updateLikes(count);
                 }
                 else {
@@ -91,42 +82,60 @@ public class BlogPostAdapter extends RecyclerView.Adapter<BlogPostAdapter.ViewHo
         });
 
                 //Get Likes
-                firestore.collection("Posts/" + blogPostId + "/Likes").document(currentUserId).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                firestore.collection("Posts").document(blogPostId).addSnapshotListener(new EventListener<DocumentSnapshot>() {
                     @SuppressLint("UseCompatLoadingForDrawables")
                     @Override
                     public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
 
-                        if (value.exists()) {
+                        ArrayList<String> ar = (ArrayList<String>) value.get("Likes");
+                        if (ar.contains(currentUserId)) {
                             holder.likeBtn.setImageDrawable(context.getDrawable(R.drawable.action_liked));
                         } else {
                             holder.likeBtn.setImageDrawable(context.getDrawable(R.drawable.action_likebutton));
                         }
                     }
                 });
+
         //Like Feature
         holder.likeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                firestore.collection("Posts/"+blogPostId+"/Likes").document(currentUserId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+               Task<DocumentSnapshot> dc =  firestore.collection("Posts").document(blogPostId).get();
+               dc.addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                   @Override
+                   public void onComplete(@NonNull Task<DocumentSnapshot> task) {
 
-                        if(!task.getResult().exists())
-                        {
+                       DocumentSnapshot ds = task.getResult();
+                       ArrayList<String> res = (ArrayList<String>) ds.get("Likes");
+                       if(res.contains(currentUserId))
+                       {
+                           res.remove(currentUserId);
+                       }
+                       else
+                           res.add(currentUserId);
+                       Map<String,Object> mp = new HashMap<>();
+                       mp.put("Likes",res);
+                       firestore.collection("Posts").document(blogPostId).set(mp, SetOptions.merge());
+                   }
+               });
 
-                            Map<String,Object> mp = new HashMap<>();
-                            mp.put("TimeStamp", FieldValue.serverTimestamp());
-                            firestore.collection("Posts/"+blogPostId+"/Likes")
-                                    .document(currentUserId).set(mp);
-                        }
-                        else
-                        {
-                            firestore.collection("Posts/"+blogPostId+"/Likes")
-                                    .document(currentUserId).delete();
-                        }
-                    }
-                });
+//                firestore.collection("Posts/"+blogPostId+"/Likes").document(currentUserId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//
+//                        if(!task.getResult().exists()){
+//                            Map<String,Object> mp = new HashMap<>();
+//                            mp.put("TimeStamp", FieldValue.serverTimestamp());
+//                            firestore.collection("Posts/"+blogPostId+"/Likes").document(currentUserId).set(mp);
+//                        }
+//                        else
+//                        {
+//                            firestore.collection("Posts/"+blogPostId+"/Likes")
+//                                    .document(currentUserId).delete();
+//                        }
+//                    }
+//                });
 
             }
         });

@@ -1,5 +1,6 @@
 package com.example.apollo;
 
+import static android.content.ContentValues.TAG;
 import static androidx.core.content.ContextCompat.getSystemService;
 import static com.google.firebase.firestore.DocumentSnapshot.ServerTimestampBehavior.ESTIMATE;
 
@@ -22,13 +23,17 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -71,14 +76,11 @@ public class HomeFragment extends Fragment {
 
         firestore = FirebaseFirestore.getInstance();
 
-        database  = FirebaseDatabase.getInstance();
-
-        reference = database.getReference("Posts");
-//        blogList.clear();
         recyclerView = (RecyclerView)view.findViewById(R.id.post_list_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter   = new BlogPostAdapter(blogList);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         EventChangeListener();
+        adapter = new BlogPostAdapter(blogList);
         recyclerView.setAdapter(adapter);
         return view;
     }
@@ -87,6 +89,7 @@ public class HomeFragment extends Fragment {
 
         Query firstQuery = firestore.collection("Posts").orderBy("TimeStamp",Query.Direction.DESCENDING);
         firstQuery.addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                 if(error!=null)
@@ -95,32 +98,24 @@ public class HomeFragment extends Fragment {
                     return;
                 }
                 blogList.clear();
-                for(DocumentChange doc : value.getDocumentChanges())
+                for(DocumentSnapshot doc : value.getDocuments())
                 {
-                    if(doc.getType()== DocumentChange.Type.ADDED)
-                    {
-                        String blogPostId = doc.getDocument().getId();
-//                        BlogPost blogPost = doc.getDocument().toObject(BlogPost.class);
-                        QueryDocumentSnapshot post = doc.getDocument();
-                        Map<String, Object> s = post.getData();
-                        String content = (String) s.get("Post_Content");
+
+                        BlogPost blogPost = new BlogPost();
+                        Map<String, Object> s = doc.getData();
+                        int[] likeCnt = {0};
+                        blogPost.setPost_txt((String) s.get("Post_Content"));
                         DocumentSnapshot.ServerTimestampBehavior behavior = ESTIMATE;
-                        Date date = post.getDate("TimeStamp", behavior);
-                        String userid = (String) s.get("User");
-                        blogList.add(new BlogPost(userid,content,date).withId(blogPostId));
-                    }
+                        blogPost.setTimestamp(doc.getDate("TimeStamp", behavior));
+                        blogPost.setUser_id((String) s.get("User"));
+                        blogList.add(blogPost.withId(doc.getId()));
 
                 }
-
                 adapter.notifyDataSetChanged();
             }
 
         });
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
 
-    }
 }

@@ -7,4 +7,8 @@
     android:background="@color/navyBlue"
     android:padding="10dp">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/most_liked_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </FrameLayout>

@@ -33,6 +33,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -69,10 +70,12 @@ public class NewPostActivity extends AppCompatActivity {
                     new_post_progress.setVisibility(View.VISIBLE);
                     String randomName = FieldValue.serverTimestamp().toString();
 
+                            ArrayList<String> likedBy = new ArrayList<>();
                             Map<String,Object> postMap = new HashMap<>();
                             postMap.put("Post_Content",text);
                             postMap.put("User",currUser);
                             postMap.put("TimeStamp",FieldValue.serverTimestamp());
+                            postMap.put("Likes",likedBy);
 
                             firestore.collection("Posts").add(postMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
 

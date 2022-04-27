@@ -11,9 +11,10 @@
         <entry key="..\:/AndroidStudioProjects/apollo/app/src/main/res/drawable/shadow.xml" value="0.253" />
         <entry key="..\:/AndroidStudioProjects/apollo/app/src/main/res/drawable/shape_rectangle.xml" value="0.2315" />
         <entry key="..\:/AndroidStudioProjects/apollo/app/src/main/res/layout/activity_login.xml" value="0.264" />
-        <entry key="..\:/AndroidStudioProjects/apollo/app/src/main/res/layout/activity_main.xml" value="0.1527777777777778" />
+        <entry key="..\:/AndroidStudioProjects/apollo/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/AndroidStudioProjects/apollo/app/src/main/res/layout/activity_new_post.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/apollo/app/src/main/res/layout/activity_sign_up.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/apollo/app/src/main/res/layout/activity_splash.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/apollo/app/src/main/res/layout/activity_user_layout.xml" value="0.536" />
         <entry key="..\:/AndroidStudioProjects/apollo/app/src/main/res/layout/fragment_account.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/apollo/app/src/main/res/layout/fragment_home.xml" value="0.21164021164021163" />
@@ -24,6 +25,7 @@
         <entry key="..\:/AndroidStudioProjects/apollo/app/src/main/res/menu/main_menu.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/apollo/app/src/main/res/menu/options_users_post.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/apollo/app/src/main/res/menu/post_btn.xml" value="0.25" />
+        <entry key="..\:/AndroidStudioProjects/apollo/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1215" />
       </map>
     </option>
   </component>

@@ -1,6 +1,7 @@
 package com.example.apollo;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -36,14 +37,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(isNetworkAvailable())
-        {
-            Toast.makeText(this, "Connected", Toast.LENGTH_SHORT).show();
-        }
-        else{
-            Toast.makeText(this, "Connection Unavailable", Toast.LENGTH_SHORT).show();
-
-        }
         mAuth = FirebaseAuth.getInstance();
         //Bottom navigation bar
         main_bottom_nav_view = findViewById(R.id.mainBottomNav);
@@ -129,4 +122,5 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     }
+
 }

@@ -96,21 +96,21 @@ public class AccountFragment extends Fragment {
                 }
                 viewList.clear();
 
-                for (DocumentChange doc : value.getDocumentChanges()) {
-                    if (doc.getType() == DocumentChange.Type.ADDED) {
-                        QueryDocumentSnapshot snapshot = doc.getDocument();
-                        Map<String, Object> mp = snapshot.getData();
+                for (DocumentSnapshot doc : value.getDocuments()) {
+
+
+                        Map<String, Object> mp = doc.getData();
                         if (mp.get("User").equals(sc)) {
                             String content = (String) mp.get("Post_Content");
                             DocumentSnapshot.ServerTimestampBehavior behavior = ESTIMATE;
-                            Date date = snapshot.getDate("TimeStamp", behavior);
+                            Date date = doc.getDate("TimeStamp", behavior);
                             String userid = (String) mp.get("User");
-                            String posit  = snapshot.getId();
+                            String posit  = doc.getId();
                             UserLayout ul = new UserLayout(content, date,posit);
 
                             viewList.add(ul);
                         }
-                    }
+
                     adapter.notifyDataSetChanged();
                 }
             }

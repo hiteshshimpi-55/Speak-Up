@@ -56,7 +56,6 @@ public class Login_Activity extends AppCompatActivity {
 
                 String loginEmail = loginEmailText.getText().toString();
                 String loginPass  = loginPassText.getText().toString();
-
                 if(!TextUtils.isEmpty(loginEmail) && !TextUtils.isEmpty(loginPass))
                 {
                     progressBar.setVisibility(View.VISIBLE);
