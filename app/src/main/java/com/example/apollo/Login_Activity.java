@@ -64,7 +64,7 @@ public class Login_Activity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful())
                             {
-                                sendToMain();
+                                checkIfEmailVerified();
                             }
                             else
                             {
@@ -97,7 +97,25 @@ public class Login_Activity extends AppCompatActivity {
         }
 
     }
+    private void checkIfEmailVerified()
+    {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
+        if (user.isEmailVerified())
+        {
+            // user is verified, so you can finish this activity or send user to activity which you want.
+            sendToMain();
+            Toast.makeText(Login_Activity.this, "Successfully logged in", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            Toast.makeText(Login_Activity.this,"Please verify your email by visiting the link\n sent to you by our team on gmail\n",Toast.LENGTH_LONG).show();
+            // email is not verified, so just prompt the message to the user and restart this activity.
+            // NOTE: don't forget to log out the user.
+            FirebaseAuth.getInstance().signOut();
+            //restart this activity
+        }
+    }
     private void sendToMain() {
         Intent main_Intent = new Intent(Login_Activity.this,MainActivity.class);
         startActivity(main_Intent);

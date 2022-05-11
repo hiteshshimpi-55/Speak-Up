@@ -15,6 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -63,15 +65,25 @@ public class SignUpActivity extends AppCompatActivity {
 
                 if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(pass) && !TextUtils.isEmpty(c_pass))
                 {
-                    progressBar.setVisibility(View.VISIBLE);
+
                     if(pass.equals(c_pass))
                     {
+                        progressBar.setVisibility(View.VISIBLE);
                         mAuth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
 
                                 if(task.isSuccessful()){
-                                    sendToMain();
+                                    mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                mAuth.getInstance().signOut();
+                                                startActivity(new Intent(SignUpActivity.this,Login_Activity.class));
+                                                finish();
+                                            }
+                                        }
+                                    });
                                 }else
                                 {
                                     String error = task.getException().getMessage();
@@ -109,7 +121,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void sendToMain() {
 
-        Intent intent = new Intent(SignUpActivity.this,Login_Activity.class);
+        Intent intent = new Intent(SignUpActivity.this,MainActivity.class);
         startActivity(intent);
         finish();
     }

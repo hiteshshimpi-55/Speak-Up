@@ -68,15 +68,16 @@ public class BlogPostAdapter extends RecyclerView.Adapter<BlogPostAdapter.ViewHo
         firestore.collection("Posts").document(blogPostId).addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                Map<String,Object> mp = value.getData();
-                ArrayList<String> ar = (ArrayList<String>) mp.get("Likes");
-                if(!ar.isEmpty())
-                {
-                    int count = ar.size();
-                    holder.updateLikes(count);
-                }
-                else {
-                    holder.updateLikes(0);
+
+                if(value.exists()) {
+                    Map<String,Object> mp = value.getData();
+                    ArrayList<String> ar = (ArrayList<String>) mp.get("Likes");
+                    if (!ar.isEmpty()) {
+                        int count = ar.size();
+                        holder.updateLikes(count);
+                    } else {
+                        holder.updateLikes(0);
+                    }
                 }
             }
         });
@@ -87,11 +88,13 @@ public class BlogPostAdapter extends RecyclerView.Adapter<BlogPostAdapter.ViewHo
                     @Override
                     public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
 
-                        ArrayList<String> ar = (ArrayList<String>) value.get("Likes");
-                        if (ar.contains(currentUserId)) {
-                            holder.likeBtn.setImageDrawable(context.getDrawable(R.drawable.action_liked));
-                        } else {
-                            holder.likeBtn.setImageDrawable(context.getDrawable(R.drawable.action_likebutton));
+                        if (value.exists()) {
+                            ArrayList<String> ar = (ArrayList<String>) value.get("Likes");
+                            if (ar.contains(currentUserId)) {
+                                holder.likeBtn.setImageDrawable(context.getDrawable(R.drawable.action_liked));
+                            } else {
+                                holder.likeBtn.setImageDrawable(context.getDrawable(R.drawable.action_likebutton));
+                            }
                         }
                     }
                 });

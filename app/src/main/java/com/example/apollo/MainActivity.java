@@ -22,6 +22,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
 
     private androidx.appcompat.widget.Toolbar mainToolbar;
